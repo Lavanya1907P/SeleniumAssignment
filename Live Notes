@@ -1,0 +1,1007 @@
+
+
+
+
+19-08-2024
+================
+Selenium WebDriver
+------------------------
+Selenium WebDriver is an interface
+Selenium WebDriver is an API for webUI Automation
+=========================================================
+Selenium Setup
+=====================
+1.Using java Project
+=======================
+1.create a java project
+2.download selenium client library from selenium.dev site
+3.right click on project-->buil path--->configure build path--->libraries
+-->class path--->add external library
+
+
+2.Using Maven Project
+========================================
+What is Maven
+----------------
+Maven is build management tool as well as Project mangement tool
+
+Maven has one configuration file(POM.xml file)
+=======================================
+POM is project object model 
+it is configuration file for all project setup
+
+Structure
+============
+
+<project>
+<depedencies>
+<dependency> selenium</dependency>
+</dependencies>
+
+<build>
+<plugins>
+</plugins>
+</build>
+
+</project>
+
+============================================
+What is Dependency?
+====================
+It is a library file(executable file)
+
+How many repository maven support?
+=====================================
+Two repository maven Support
+1.Remote/share/central (mvnrepository.com)
+2.Local repository
+(c/user/m2 folder/repo)
+=======================================================
+20-08-2024
+===================
+
+TestCase: validate Google application title which should be Google
+
+Step1: Open browser with Google application
+Step2: Get the actual title from application
+Step3: Compare actual vs expected title
+Step4: Display appropriate result
+Step5: close the browser/application
+
+Exceptions In Selenium
+==============================
+1.If wrong url address provided
+InvalidArgumentException: invalid argument
+
+
+
+
+
+WebDriver Browser Commands
+================================
+1.get(url)-open application
+2.getTitle()- get the title from application
+3.getCurrentUrl()- get the current url of application
+4.getPageSource()- get the page source
+5.close()- close the current browser
+6.quit()- close all open browsers/windows open by selenium
+
+=======================================================================
+WebDriver Navigations commands
+===================================
+To perform navigation Selenium Support Navigation Interface
+
+1.to(url)
+------------
+driver.navigate().to(url)
+
+2.back()
+-----------
+driver.nabigate().back()
+
+3.forward()
+----------------
+driver.navigate().forward()
+
+4.refresh()
+------------
+driver.navigate().refresh()
+
+===============================================================
+How to automate any WebElement
+======================================
+WebElement?
+============
+In general every web page designed with UI elements
+textboxes,checkbox,link,button,dropdown
+So in selenium we can called this as WebElement
+
+In Technical Word WebElement is interface in selenium
+
+1.To interact with any webelement first get the address of webelement
+2.Identify webelement and perform action
+
+1.To get the address Selenium Supports Locators
+====================================================
+What is Locator?
+====================
+Locators is address of webElement from WebPage
+
+Selenium Support Total 8 locators
+=======================================
+1.By id
+2.By name
+3.By className
+4.By linkText
+5.By partialLinkText
+6.By tagName
+
+Dynamic Loctaors
+=====================
+7.By cssSelector
+8.By xpath
+
+
+What is By?
+=================
+By is a class in selenium which help to get the address
+
+
+Primary locators in selenium
+=============================
+By id
+
+To identify Any WebElement selenium support two method
+===========================================================
+1.findElement()
+
+2.findElements()
+
+
+==================================================
+Actions on WebElement
+========================
+textbox,searchbox--->Pass data----->sendKeys("data",Keys.Keyboard key)
+button,link,checkbox,radio button--->click---->click()
+To clear any text/data-------->clear()
+
+========================================================
+Validate any WebElement
+===========================
+isDisplayed()
+isEnabled()
+isSelected()
+
+====================================================
+21-08-2024
+==============
+To identify Any WebElement selenium support two method
+===========================================================
+1.findElement()
+-------------------
+- findElement helps to identify single webelement
+- It returns WebElement interface object
+- If Element not found then it throws NoSuchElementException
+
+
+2.findElements()
+----------------------
+- findElements() will help to identify multiple WebElements
+- It returns List<WebElement> Object
+- If Element not found It will not throws any exception
+In case of List --->[]
+In case of size()--->0
+
+=================================================================
+How to maximize size of browser
+===================================
+driver.manage().window().maximize();
+
+className Locator
+=========================
+
+
+class="form-control"
+
+class="btn btn-primary"
+
+InvalidSelectorException: Compound class names not permitted
+
+class="btn btn-default btn-primary"
+
+=================================================
+How to automate any HyperLink in Selenium
+============================================
+<a id="SignIn" href="login.html">Sign In</a>
+<a>Link Text </a>
+
+1.By linkText
+--------------------
+will do exact match
+driver.findElement(By.linkText("Sign In")).click();
+
+2.By partialLinkText
+-----------------------
+will do partial match
+
+driver.findElement(By.partailLinkText("In")).click();
+
+=========================================
+Synchronization Issue in Selenium
+==================================
+Time mapping issue between application and tool
+
+Selenium Support two dynamic Waits
+====================================
+1.Implicit wait
+========================
+- Globally applicable to all the elements from script
+- onece you create driver session apply global wait
+
+driver.manage().timeOuts().implicitlyWait(Duration.ofSeconds(10));
+Element =6 sec
+Wait time=10sec
+remaining 4 sec selenium will not wait it will continue with next element
+
+
+2.Explicit wait
+=======================
+- Explicit wait is applicable only for single webelement at a time
+1.WebDriverWait class
+2.FluentWait class
+
+WebDriverWait(c) extends FluentWait(c)implements Wait(I)
+
+===============================================================
+By tagName
+=================
+Number of Links
+Number of Images
+Number of textBoxes
+
+WebElement Methods(special)
+=============================
+1.getAttribute()
+-----------------------
+This methods returns attribute value
+
+2.getText()
+-------------------
+To get any visible text of element we use getText()
+hidden html text alos we can get using getText()
+====================================================================
+22-08-2024
+=================
+Dynamic Locators
+=====================
+1.By cssSelector
+=======================
+
+What is css?
+================
+Css means cascaded style sheet is a language to provide style to html element
+
+What is cssSelector?
+====================
+- It is locator to identify element based on css attribute
+- faster than xpath as it travels only iin one direction (parent--->child)
+- It doesn't support method
+
+
+
+1.tagname with id
+-------------------
+Syntax:
+============
+tagname#id
+
+<input id="user-name" name="user-name" value="">
+
+input#user-name
+
+
+2.tagname with attribute
+-------------------------
+Syntax
+-----------
+tagname[attribute='value']
+
+input[placeholder='Password']
+
+3.tagname with classname
+-------------------------
+Syntax:
+-------------
+tagname.classNamevalue
+
+class="submit-button btn_action"
+
+input.submit-button.btn_action
+
+.tagname with id,classname and attribute
+--------------------------------------------
+Syntax:
+--------------
+tagname#id.classname[attribite='value']
+
+<input type="submit" class="submit-button btn_action"  id="login-button">
+
+input#login-button.submit-button[type='submit']
+
+
+=======================================================================
+2.By xpath
+====================
+What is xpath
+===================
+xpath is path of the element from xml/html document
+xpath identify element from directly DOM(Doument Object Model)
+xpath can travel from parent to child and child to parent
+xpath support multiple multiple
+xpath axies
+
+=================================
+HTML DOM Structue
+=========================
+<html>---------root node
+<head>
+</head>
+
+<body>
+<input>---------------element
+<a>
+
+</body>
+
+</html>
+
+========================================================================
+Types of Xpath
+==================
+1.Absolute xpath
+==================
+	- absolute xpath always identify element from the root node
+	- It starts with '/'
+	/html/body/div/div/div[2]/div[1]/div/div/form/div[1]/input
+
+2.Relative xpath
+==================
+	-relative xpath identify element from its relative property
+	-It starts with '//'
+
+//*[@id="user-name"]
+* = all
+===================================================
+Syntax:
+==================
+//tagname[@attribute='value']
+
+========================================
+xpath with operators
+=======================
+1.xpath with AND
+======================
+//tagname[@attribute='value' and @attribute='value']
+
+
+1.xpath with OR
+======================
+//tagname[@attribute='value' or @attribute='value']
+
+xpath with index/position()
+================================
+Syntax:
+============
+xpath------multiple elements
+
+(xpath)[index]
+
+
+position()
+=============
+Syntax:
+==============
+(xpath)[porsition()=idex]
+=======================================================
+26-08-2024
+==================
+xpath Methods
+==================
+1.text()
+============
+Syntax:
+----------------
+//tagname[text()='text']
+
+2.normalize-space()
+=======================
+If you want to ignore white space (trim) we use this method
+
+Syntax:
+==========
+//tagname[normalize-space()='text']
+
+3.contains()
+=============
+
+Syntax:
+==========
+//tagname[contains(@attribute,'value')]
+or
+//tagname[contains(text(),'text']
+
+4.starts-with()
+==================
+Syntax:
+==========
+//tagname[starts-with(@attribute,'value')]
+or
+//tagname[starts-with(text(),'text']
+
+
+xpath Axies
+==================
+1.ancestor
+=============
+Syntax:
+==========
+//tagname[@attribute='value']//ancestor::tagname of ancestor
+find the john ancestor tbody
+------------------------------
+//td[text()='John']//ancestor::tbody
+
+
+
+2.parent
+============
+Syntax:
+==========
+//tagname[@attribute='value']//parent::tagname of parent
+
+find the john parent node
+------------------------------
+//td[text()='John']//parent::tr
+
+3.child
+==============
+Syntax:
+==========
+//tagname[@attribute='value']//child::tagname of child
+Get the all child text/count of row4
+=================================
+//tbody//tr[4]//child::td
+
+6.following
+================
+Syntax:
+==========
+//tagname[@attribute='value']//following::tagname of following element
+
+get all the count of tr(row) after john
+===================================
+//td[text()='John']//following::tr-----------2 rows
+
+7.preceding
+===================
+Syntax:
+==========
+//tagname[@attribute='value']//preceding::tagname of preceding element
+
+
+Get all preceding rows
+======================
+//td[text()='John']//preceding::tr
+
+4.Following sibling
+======================
+Syntax:
+==========
+//tagname[@attribute='value']//following-sibling::tagname of following-sibling element
+
+get all following sibblings of John
+=========================================
+//td[text()='John']//following-sibling::td  3
+
+5.Preceding sibling
+===========================
+Syntax:
+==========
+//tagname[@attribute='value']//preceding-sibling::tagname of preceding-sibling element
+
+
+get all the preceding siblings of John
+===========================================
+//td[text()='John']//preceding-sibling::td
+
+<table id="customers" class="table">
+
+        <tbody>--------ancestor
+
+        <tr>-------->parent
+ 
+         <td>4</td>-------------preceding sibling
+
+          <td>John</td>-------Element
+
+          <td>Robinson</td>---------following sibling
+
+          <td>jr5527</td>
+ 
+         <td>
+              <a href="user.html"><i class="icon-pencil"></i></a>
+              <a role="button" href="#myModal" data-toggle="modal"><i class="icon-remove"></i></a>
+          </td>
+
+        </tr>
+      
+      </tbody>
+    </table>
+
+
+Smaple xpath includes methods+Axies
+======================================
+(//input[@id='twotabsearchtextbox']//preceding::div//span[contains(@id,'glow-ingress')])[1]
+===============================================
+Selenium 4 relative xpath
+================================
+above()
+below()
+toRightOf()
+toLeftOf()
+near()
+=============================================================================
+27-08-2024
+================
+Dropdown Automation
+=========================
+
+1.Select tag based dropdown
+================================
+Automate such dropdown using Select class
+
+Select dd=new Select(dropdown ele);
+
+Is dropdown support multiple value selection?
+isMultiple()
+
+single Option Selection
+----------------------------
+1.selectByIndex()
+2.selectByVisibleText()
+3.selectByValue()
+
+To get all the options from the dropdown
+==========================================
+getOptions()
+
+---------------------------------------------
+2.Bootstarp/Javascript/autosuggesion
+============================================ 
+xpath
+============================================================
+TestNG- framework
+==================
+Alert handling
+=================
+alert is javascript alert
+In selenium we have Alert interface to handle alert
+
+Alert interface provides 4 methods
+===================================
+1.To get the text of alert- getText()
+2.To interact with Ok---->accept()
+3.To interact with cancel--->dismiss()
+4.to prompt----->sendKeys()
+
+Types
+===============
+1.Normal Alert with Ok button
+2.confirmation alert ok and cancel
+3.prompt alert
+
+
+How to handle authentication alert
+======================================
+
+//https://username:password@Url
+
+
+========================================================
+Window handling
+=========================
+How to handle multiple Window in Selenium
+==========================================
+
+1.getWindowHandle()-:Parent Window
+---------------------------------------
+This method always return String
+
+2.getWindowHandles():- All Parent +child window
+----------------------------------------------
+This return Set<String>
+
+
+Selenium 4 new feature
+-----------------------
+newTab,new window
+
+newWindow()
+---------------
+newWindow() returns WebDriver interface object
+driver.switchTo().newWindow(WindowType.TAB);
+driver.switchTo().newWindow(WindowType.WINDOW);
+=========================================================
+Frame handling
+===================
+Frame is one html document embeded into another html document.
+
+tags
+==========
+<frame>
+<iframe>
+
+Frame handling
+====================
+driver.switchTo().frame(id)
+driver.switchTo().frame(name)
+driver.switchTo().frame(index)
+driver.switchTo().frame(WebElement ele)
+
+
+2-09-2024
+======================
+Types
+=============
+Normal frame
+Nested frame
+
+JavascriptExecutor
+=====================
+In Selenium JavascriptExecutor is interface
+
+scroll
+refresh
+title
+element+click
+============================
+Scenarios
+=================
+calendar
+done
+==============
+3-09-2024
+====================
+Wait()
+-------------
+Synchronization Issue in Selenium
+==================================
+Time mapping issue between application and tool
+
+Selenium Support two dynamic Waits
+====================================
+1.Implicit wait
+========================
+- Globally applicable to all the elements from script
+- onece you create driver session apply global wait
+
+driver.manage().timeOuts().implicitlyWait(Duration.ofSeconds(10));
+Element =6 sec
+Wait time=10sec
+remaining 4 sec selenium will not wait it will continue with next element
+
+
+2.Explicit wait
+=======================
+- Explicit wait is applicable only for single webelement at a time
+1.WebDriverWait class
+2.FluentWait class
+
+WebDriverWait(c) extends FluentWait(c)implements Wait(I)
+=====================================================
+html table/WebTable
+==================
+Scenario:
+================
+1.Number of rows
+2.Number columns
+3.Print specific row
+4.Print specific column
+5.Print the data
+6.Print the data of table
+=================================
+Actions Class-mouse
+=========================
+In selenium to handle any mouse operation we have Actions class available
+
+Actions act=new Actions(driver);
+
+Note:
+==========
+If you are performing one single action then use perform()
+If you are performing at a time multiple actions then use build().perform() 
+
+===================================
+04-09-2024
+
+Robot class-Keyboard
+==========================
+Packages
+===========
+import java.awt.Robot;
+import java.awt.datatransfer.StringSelection;
+import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
+
+//Clip board action
+StringSelection sc=new StringSelection("Path Of file");
+Toolkit.getDefaultToolkit().getSystemClipboard().setContents(sc,null);
+
+keyPress()
+keyRelease()
+
+Capabilities 
+==================
+To customize any browser session we can setup certain capabilities
+{Key: value}
+
+In selenium
+==============
+Chorme---->ChromeOptions class
+---------------------------------
+https://developer.chrome.com/docs/chromedriver/capabilities
+firefox--->FirefoxOptions class
+edge--->EdgeOptions class
+
+What is headless browser test
+============================
+selenium 3--->HTMLDriver
+
+ChromeOptions options=new ChromeOptions();
+		options.addArguments("--disable-search-engine-choice-screen");
+		WebDriver driver=new ChromeDriver(options);
+
+
+
+//current directory path
+System.getPriperty("user.dir");
+
+===========================
+TestNG Framework
+==========================
+
+TestNg is unit testing framework inspired by JNUIT
+In TestNG complete execution Control By testng.xml file
+
+what is testng.xml file
+===============================
+This is configuration file 
+complete testng is based on xml file
+
+<suite>
+<test name="test1>
+<classes>
+<class name="package.classname"/>
+<class name="pacjage.classname></class>
+</classes>
+</test>
+
+<test name="test2">
+<classes>
+<class name="package.classname"/>
+<class name="pacjage.classname></class>
+</classes>
+</test>
+</suite>
+
+===================================
+
+@Test-Annotation ==testcase
+Arguments
+==============
+1.priority
+------------------
+In testng every test execute by default in alphabetical order 
+Using priority=number we can change the order of execution.
+
+2.invocationCount
+-------------------------
+To execute testcase multiple number of time
+
+How to disable any test execution
+=======================================
+1.Using attribute enabled=false
+------------------
+enabled=false
+
+================================================
+5-09-2024
+================
+2.Using testng.xml-->we can exclude the method(testcase)
+----------------------------------------------------------
+
+<class name=" com.TestNGFramework.TestNGDemo4_disableTest"> 
+<method name="verifyApplication"/>
+<method name="verifyApplication"/>
+<method name="verifyApplication"></method>
+
+ <methods>
+      	<exclude name="verifyCurrentUrl"></exclude>
+  </methods>
+</class>
+
+
+--------------------------
+4.timeout
+==================
+Used to set execution timeout to our test case
+================================================
+Assertion in TestNG/Selenium
+================================
+To validate current state of the application we uuse assertion
+Types:
+==========
+1.Hard assertion(assert)
+====================
+Assert class which has all static methods
+
+2.Soft assertion(verify)
+=============================
+SoftAssert class 
+
+
+Methods
+==========
+1.assertEquals(act,exp);
+2.assertTrue(True)
+3.assertFalse(false)
+
+Q: When assertion will fail which exception you will get
+===================================================
+When Assertion fail you will get AssertionError from java.lang
+
+==================================================
+5.dependesOnMethod
+==========================
+To set dependency between test cases we use argument dependsOnMethod
+===================================================
+How to run failed test cases in Selenium?
+==========================================
+Under test-output folder--->testng.failed.xml file --->run this
+=====================================================
+
+TestNG xml file usage
+==========================
+1.Test suite creation
+Test suite: collection of test cases is called tets suite
+Test grouping /test method include/exclude
+Parallel test  and cross browser test
+Testng xml use to pass test data
+
+Grouping in TestNG
+====================
+Multiple test case if you want to run as group then we use testng grouping
+(groups = "regressionTest")
+To run use xml file
+Groups mostly we apply at suite level and test level
+
+how to create test suite using testng
+===========================================
+done--using xml file
+======================================================
+
+Test data for TestNG
+=====================
+1.Using xml file -->(@Parameters)
+===========================
+test data as parameter
+in xml file
+-----------------
+<parameter name="un" value="Priyanka"/>
+
+
+2.Using Properties file
+=========================
+Properties file keeps information in the form of Key=value
+It is used to store configuration data
+
+1.create properties file .properties
+2.To read this we use Properties class from java
+
+
+Object Repository
+=================
+Which contain information about objects key=value
+Selenium does not have any object repository
+We can implement it using'
+1.Using properties file
+2.Using page Object model design pattern
+
+
+Annotations in TestNG(Rules)
+=======================
+For Suite
+=============
+@BeforeSuite
+@AfterSuite
+
+For test
+============
+@BeforeTest
+@AfterTest
+
+
+For class
+================
+
+class
+@Beforeclass 
+@AfterClass
+
+@BeforeMethod-----@Test
+@AfterMethod-------@Test
+
+@Test
+login()
+
+==========================
+10-09-2024
+====================
+Page Object Model
+========================
+It is a design pattern for objects
+
+Where we keep object info(locators +action method) in class that is called Page class
+and we keep testcase+assertion in one class called testClass
+
+Advantages
+===============
+code reusability improved
+Maintain the code
+changes are easy
+avoid code duplication
+
+Ways
+============
+1.using By locator
+2.Using PageFactory
+
+
+Hybrid Driven Framework
+==========================
+done
+
+
+
+Data driven Framework
+==========================
+what is data driven testing?
+--------------------------------
+Executing same set of action with multiple data multiple time
+
+1.Using array
+2.Using Excel File-->Apache POI
+
+@DataProvider
+
+Screenshots
+================
+done
+
+12-09-2024
+====================
+
+Cross browser Test/Parallel Test
+==================================
+done
+Reporting
+===============
+1.Listeners
+--------------------
+1.Add listeners using @Listerners annotation
+2.Add listeners using xml
+
+2.Extent Report
+
+
+Cucumber
+=================
